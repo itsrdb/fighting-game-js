@@ -21,6 +21,7 @@ class Sprite {
             height: 50,
         }
         this.color = color
+        this.isAttacking
     }
 
     draw(){
@@ -42,6 +43,13 @@ class Sprite {
         } else{
             this.velocity.y += gravity
         }
+    }
+
+    attack(){
+        this.isAttacking = true
+        setTimeout(() => {
+            this.isAttacking = false
+        }, 100);
     }
 }
 
@@ -115,7 +123,10 @@ function animate(){
         player.attackBox.position.x + player.attackBox.width >= enemy.position.x &&
         player.attackBox.position.x <= enemy.position.x + enemy.width &&
         player.attackBox.position.y + player.attackBox.height >= enemy.position.y &&
-        player.attackBox.position.y <= enemy.position.y + enemy.height){
+        player.attackBox.position.y <= enemy.position.y + enemy.height &&
+        player.isAttacking
+    ){
+        player.isAttacking = false
         console.log('hit')
     }
 }
@@ -134,6 +145,9 @@ window.addEventListener('keydown', (event) => {
             break
         case 'w':
             player.velocity.y = -20
+            break
+        case ' ':
+            player.attack()
             break
 
         //for enemy
