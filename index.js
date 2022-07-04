@@ -154,7 +154,8 @@ function animate(){
 
     if(rectangularCollision({rectange1: enemy, rectange2: player}) && enemy.isAttacking){
         enemy.isAttacking = false
-        console.log('enemy.hit')
+        player.health -= 20
+        document.querySelector('#playerHealth').style.width = player.health + '%'
     }
 }
 
