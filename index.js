@@ -98,6 +98,9 @@ window.addEventListener('keydown', (event) => {
             keys.a.pressed = true
             lastKey = 'a'
             break
+        case 'w':
+            player.velocity.y = -10
+            break
     }
     console.log(event.key)
 })
