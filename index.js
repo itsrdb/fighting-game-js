@@ -8,6 +8,14 @@ c.fillRect(0, 0, canvas.width, canvas.height)
 
 const gravity = 0.7
 
+const background = new Sprite({
+    position: {
+        x: 0,
+        y: 0
+    },
+    imageSrc: './img/background.png'
+})
+
 const player = new Fighter({
     position: {
         x: 0,
@@ -56,47 +64,13 @@ const keys = {
     }
 }
 
-function rectangularCollision({rectange1, rectange2}){
-    return (
-        rectange1.attackBox.position.x + rectange1.attackBox.width >= rectange2.position.x &&
-        rectange1.attackBox.position.x <= rectange2.position.x + rectange2.width &&
-        rectange1.attackBox.position.y + rectange1.attackBox.height >= rectange2.position.y &&
-        rectange1.attackBox.position.y <= rectange2.position.y + rectange2.height
-    )
-}
-
-function determineWinner({player, enemy, timerId}){
-    clearTimeout(timerId)
-    document.querySelector('#displayText').style.display = 'flex'
-    if(player.health == enemy.health){
-        document.querySelector('#displayText').innerHTML = 'Tie'
-    } else if(player.health > enemy.health){
-        document.querySelector('#displayText').innerHTML = 'Player 1 Wins'
-    } else if(player.health < enemy.health){
-        document.querySelector('#displayText').innerHTML = 'Player 2 Wins'
-    }
-}
-
-let timer = 60
-let timerId
-function decreaseTimer(){
-    if(timer>0){
-        timerId = setTimeout(decreaseTimer, 1000)
-        timer -= 1
-        document.querySelector('#timer').innerHTML = timer
-    }
-
-    if(timer === 0){
-        determineWinner({player, enemy})
-    }
-}
-
 decreaseTimer()
 
 function animate(){
     window.requestAnimationFrame(animate)
     c.fillStyle = 'black'
     c.fillRect(0, 0, canvas.width, canvas.height)
+    background.update()
     player.update()
     enemy.update()
 
