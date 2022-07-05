@@ -36,13 +36,19 @@
       </div>
       <!-- timer -->
       <div
+        id = "timer"
         style="
           background-color: red;
           height: 100px;
           width: 100px;
           flex-shrink: 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
         "
-      ></div>
+      >
+        10
+      </div>
       <!-- enemy health -->
       <div style="position: relative; height: 30px; width: 100%">
         <div style="background-color: yellow; height: 30px"></div>
@@ -60,6 +66,7 @@
       </div>
       <div></div>
     </dir>
+    <dir style="position: absolute; color:white; display: flex; align-items: center; justify-content: center;">Tie</dir>
     <canvas></canvas>
   </div>
 
