@@ -8,12 +8,55 @@ c.fillRect(0, 0, canvas.width, canvas.height)
 
 const gravity = 0.7
 
+//sprite
 const background = new Sprite({
     position: {
         x: 0,
         y: 0
     },
     imageSrc: './img/background.png'
+})
+
+const mountain = new Sprite({
+    position: {
+        x: 0,
+        y: 80
+    },
+    imageSrc: './img/mountain.png'
+})
+
+const grass = new Sprite({
+    position: {
+        x: 0,
+        y: 427
+    },
+    imageSrc: './img/grass.png'
+})
+
+const tree = new Sprite({
+    position: {
+        x: 800,
+        y: 110
+    },
+    imageSrc: './img/tree.png',
+    scale: 1.5
+})
+
+const house = new Sprite({
+    position: {
+        x: 500,
+        y: 160
+    },
+    imageSrc: './img/house.png',
+    scale: 1.5
+})
+
+const clouds = new Sprite({
+    position: {
+        x: 0,
+        y: 0
+    },
+    imageSrc: './img/clouds.png'
 })
 
 const player = new Fighter({
@@ -29,6 +72,7 @@ const player = new Fighter({
         x: 0,
         y: 0
     }
+    imageSrc: './img/mountain.png'
 })
 
 const enemy = new Fighter({
@@ -71,8 +115,14 @@ function animate(){
     c.fillStyle = 'black'
     c.fillRect(0, 0, canvas.width, canvas.height)
     background.update()
+    mountain.update()
+    house.update()
+    tree.update()
+    grass.update()
+    // clouds.update()
     player.update()
     enemy.update()
+    
 
     player.velocity.x = 0
 
