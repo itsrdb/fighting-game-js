@@ -71,8 +71,8 @@ const player = new Fighter({
     offset: {
         x: 0,
         y: 0
-    }
-    imageSrc: './img/mountain.png'
+    },
+    imageSrc: './img/hero.png'
 })
 
 const enemy = new Fighter({

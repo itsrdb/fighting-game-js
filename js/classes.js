@@ -1,14 +1,25 @@
 class Sprite {
-    constructor({position, imageSrc}){
+    constructor({position, imageSrc, scale = 1, frameMax = 1}){
         this.position = position
         this.width = 50
         this.height = 150
         this.image = new Image()
         this.image.src = imageSrc
+        this.scale = scale
+        this.frameMax = frameMax
+        this.framesCurrent = 0
+        this.framesElapsed = 0
+        this.framesHold = 1
     }
 
     draw(){
-        c.drawImage(this.image, this.position.x, this.position.y)
+        c.drawImage(
+          this.image,
+          this.position.x,
+          this.position.y,
+          this.image.width * this.scale,
+          this.image.height * this.scale
+        );
     }
 
     update(){
@@ -16,8 +27,15 @@ class Sprite {
     }
 }
 
-class Fighter {
-    constructor({position, velocity, color = 'red', offset}){
+class Fighter extends Sprite{
+    constructor({ position, velocity, color = 'red', offset, imageSrc, scale = 1, frameMax = 1}){
+        super({
+            position,
+            imageSrc,
+            scale,
+            frameMax
+        })
+
         this.position = position
         this.velocity = velocity
         this.width = 50
@@ -35,6 +53,9 @@ class Fighter {
         this.color = color
         this.isAttacking
         this.health = 100
+        this.framesCurrent = 0
+        this.framesElapsed = 0
+        this.framesHold = 1
     }
 
     draw(){
