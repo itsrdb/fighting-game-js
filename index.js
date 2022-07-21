@@ -72,7 +72,13 @@ const player = new Fighter({
         x: 0,
         y: 0
     },
-    imageSrc: './img/hero.png'
+    imageSrc: './img/warrior/Idle.png',
+    framesMax: 10,
+    scale: 3.5,
+    offset: {
+        x: 215,
+        y: 200
+    }
 })
 
 const enemy = new Fighter({
@@ -121,9 +127,8 @@ function animate(){
     grass.update()
     // clouds.update()
     player.update()
-    enemy.update()
+    // enemy.update()
     
-
     player.velocity.x = 0
 
     //player movement
