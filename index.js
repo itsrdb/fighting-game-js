@@ -72,12 +72,42 @@ const player = new Fighter({
         x: 0,
         y: 0
     },
-    imageSrc: './img/warrior/Idle.png',
+    imageSrc: './img/samuraiMack/Idle.png',
     framesMax: 10,
     scale: 3.5,
     offset: {
         x: 215,
         y: 200
+    },
+    sprites: {
+        idle: {
+            imageSrc: './img/warrior/Idle.png',
+            framesMax: 10
+        },
+        run: {
+            imageSrc: './img/warrior/Run.png',
+            framesMax: 8
+        },
+        jump: {
+            imageSrc: './img/warrior/Jump.png',
+            framesMax: 3
+        },
+        fall: {
+            imageSrc: './img/warrior/Fall.png',
+            framesMax: 3
+        },
+        attack1: {
+            imageSrc: './img/warrior/Attack3.png',
+            framesMax: 8
+        },
+        takeHit: {
+            imageSrc: './img/warrior/Take hit.png',
+            framesMax: 3
+        },
+        death: {
+            imageSrc: './img/warrior/Death.png',
+            framesMax: 7
+        }
     }
 })
 
@@ -132,10 +162,21 @@ function animate(){
     player.velocity.x = 0
 
     //player movement
-    if(keys.a.pressed && player.lastKey === 'a'){
+    if (keys.a.pressed && player.lastKey === 'a') {
         player.velocity.x = -5
-    } else if(keys.d.pressed && player.lastKey === 'd'){
+        player.switchSprite('run')
+    } else if (keys.d.pressed && player.lastKey === 'd') {
         player.velocity.x = 5
+        player.switchSprite('run')
+    } else {
+        player.switchSprite('idle')
+    }
+
+    // jumping
+    if (player.velocity.y < 0) {
+        player.switchSprite('jump')
+    } else if (player.velocity.y > 0) {
+        player.switchSprite('fall')
     }
 
     enemy.velocity.x = 0
